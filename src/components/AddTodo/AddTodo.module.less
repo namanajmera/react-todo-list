@@ -1,0 +1,49 @@
+@import "../../styles/main.less";
+
+.add-todo-container {
+    display    : flex;
+    align-items: center;
+    width      : 736px;
+    gap        : 8px;
+
+    .add-input {
+        display      : flex;
+        padding      : 16px;
+        align-items  : center;
+        gap          : 8px;
+        flex         : 1 0 0;
+        border-radius: 8px;
+        border       : 1px solid #0D0D0D;
+        background   : #262626;
+        color        : #808080;
+        font-family  : Inter;
+        font-size    : 16px;
+        font-style   : normal;
+        font-weight  : 400;
+        line-height  : 140%;
+    }
+
+    .add-button {
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+        padding        : 16px;
+        gap            : 8px;
+        border-radius  : 8px;
+        background     : #1E6F9F;
+
+        .button-text {
+            color      : #F2F2F2;
+            font-family: Inter;
+            font-size  : 14px;
+            font-style : normal;
+            font-weight: 700;
+            line-height: 140%;
+        }
+
+        .button-img {
+            width : 16px;
+            height: 16px;
+        }
+    }
+}
