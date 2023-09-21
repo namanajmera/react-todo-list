@@ -1,0 +1,37 @@
+@import "../../styles/main.less";
+
+.todo-container {
+    display        : flex;
+    justify-content: space-evenly;
+    align-items    : center;
+    position       : relative;
+    height         : 100%;
+    flex-direction : column;
+
+    .heading-container {
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+
+        .icon {
+            width : 40px;
+            height: 40px;
+        }
+
+        .todo-text {
+            font-family: Inter;
+            font-size  : 40px;
+            font-style : normal;
+            font-weight: 900;
+            line-height: normal;
+        }
+
+        .to {
+            color: #4EA8DE;
+        }
+
+        .do {
+            color: #5E60CE;
+        }
+    }
+}
