@@ -14,12 +14,12 @@ const Todo: React.FC = (props: Props) => {
                 <span className={`${style["todo-text"]} ${style["to"]}`}>to</span>
                 <span className={`${style["todo-text"]} ${style["do"]}`}>do</span>
             </div>
-            <div className={style["add-todo"]}>
+            <>
                 <AddTodo />
-            </div>
-            <div className={style["todo-list"]}>
+            </>
+            <>
                 <TodoList />
-            </div>
+            </>
         </div>
     );
 };
