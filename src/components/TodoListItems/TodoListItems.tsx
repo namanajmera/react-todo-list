@@ -7,15 +7,16 @@ type Props = {
     name: String,
     isCompleted: boolean
     changeValue: any
+    handleDeleteTodo: any
 }
 
-const TodoListItems = ({ name, isCompleted, changeValue, id }: Props) => {
+const TodoListItems = ({ name, isCompleted, changeValue, id, handleDeleteTodo }: Props) => {
     return (
         <div className={style['task-container']}>
             <input className={style['checked']} type="checkbox" name="" id="" checked={isCompleted}
                 onChange={() => changeValue(id)} />
             <span className={`${isCompleted && style['done-task']} ${style['text']}`}>{name}</span>
-            <img className={style['trash-icon']} src={Trash} alt="" />
+            <img className={style['trash-icon']} src={Trash} alt="" onClick={() => handleDeleteTodo(id)} />
         </div>
     )
 }

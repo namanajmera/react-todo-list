@@ -49,6 +49,11 @@ const TodoList = (props: Props) => {
         setTodoList(updatedTodo);
     }
 
+    const handleDeleteTodo = (id: number) => {
+        const updatedTodo = todoList && todoList.filter((todo) => todo.id !== id)
+        setTodoList(updatedTodo);
+    }
+
     return (
         <div className={style["todo-list-container"]}>
             <div className={style["info"]}>
@@ -70,7 +75,7 @@ const TodoList = (props: Props) => {
                     <div className={style["tasks-container"]}>
                         {
                             todoList && todoList.map((todo, index) => (
-                                <TodoListItems key={todo.id} name={todo.name} isCompleted={todo.isCompleted} id={todo.id} changeValue={handleSelect} />
+                                <TodoListItems key={todo.id} name={todo.name} isCompleted={todo.isCompleted} id={todo.id} changeValue={handleSelect} handleDeleteTodo={handleDeleteTodo} />
                             ))
                         }
                     </div>}
