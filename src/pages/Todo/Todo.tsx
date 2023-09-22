@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Todo.module.less";
 import { Rocket } from "../../assets/images";
 import AddTodo from "../../components/AddTodo/AddTodo";
+import TodoList from "../../components/TodoList/TodoList";
 
 type Props = {};
 
@@ -16,7 +17,9 @@ const Todo: React.FC = (props: Props) => {
             <div className={style["add-todo"]}>
                 <AddTodo />
             </div>
-            <div className={style["todo-list"]}></div>
+            <div className={style["todo-list"]}>
+                <TodoList />
+            </div>
         </div>
     );
 };
