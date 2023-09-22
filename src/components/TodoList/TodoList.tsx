@@ -1,6 +1,6 @@
 import { Clipboard } from "../../assets/images";
 import style from "./TodoList.module.less";
-import { todoList } from "../../Model/modal";
+import { ITodoList } from "../../Model/modal";
 import TodoListItems from "../TodoListItems/TodoListItems";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/rootReducer";
@@ -17,14 +17,14 @@ const TodoList = (props: Props) => {
   const checkIsCompleted = () => {
     const checkCompleted =
       todoList &&
-      todoList.filter((todo: todoList, index) => {
+      todoList.filter((todo: ITodoList, index) => {
         return todo?.isCompleted === true;
       });
     return checkCompleted?.length;
   };
 
   const handleSelect = (id: number) => {
-    const updatedTodo = todoList?.map((todo: todoList) =>
+    const updatedTodo = todoList?.map((todo: ITodoList) =>
       id === todo?.id
         ? { ...todo, isCompleted: !todo.isCompleted }
         : { ...todo }
@@ -34,7 +34,7 @@ const TodoList = (props: Props) => {
 
   const handleDeleteTodo = (id: number) => {
     const updatedTodo =
-      todoList && todoList.filter((todo: todoList) => todo.id !== id);
+      todoList && todoList.filter((todo: ITodoList) => todo.id !== id);
     dispatch(setTodoList(updatedTodo));
   };
 
@@ -71,7 +71,7 @@ const TodoList = (props: Props) => {
         {todoList && (
           <div className={style["tasks-container"]}>
             {todoList &&
-              todoList.map((todo: todoList) => (
+              todoList.map((todo: ITodoList) => (
                 <TodoListItems
                   key={todo.id}
                   name={todo.name}

@@ -3,7 +3,7 @@ import { Plus } from "../../assets/images";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewTodo } from "../../store/slice/todoSlice";
-import { todoList } from "../../Model/modal";
+import { ITodoList } from "../../Model/modal";
 
 type Props = {};
 
@@ -12,12 +12,13 @@ const AddTodo = (props: Props) => {
   const [todo, setTodo] = useState("");
 
   const handleAddTodo = () => {
-    const newTodo: todoList = {
+    const newTodo: ITodoList = {
       id: Math.random(),
       name: todo,
       isCompleted: false,
     };
     dispatch(addNewTodo(newTodo));
+    setTodo("");
   };
   return (
     <div className={style["add-todo-container"]}>
