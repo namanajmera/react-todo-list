@@ -11,7 +11,8 @@ const AddTodo = (props: Props) => {
   const dispatch = useDispatch();
   const [todo, setTodo] = useState("");
 
-  const handleAddTodo = () => {
+  const handleAddTodo = (e: React.FormEvent) => {
+    e.preventDefault();
     const newTodo: ITodoList = {
       id: Math.random(),
       name: todo,
@@ -21,7 +22,10 @@ const AddTodo = (props: Props) => {
     setTodo("");
   };
   return (
-    <div className={style["add-todo-container"]}>
+    <form
+      className={style["add-todo-container"]}
+      onSubmit={(e: React.FormEvent) => handleAddTodo(e)}
+    >
       <input
         className={style["add-input"]}
         type="text"
@@ -29,11 +33,11 @@ const AddTodo = (props: Props) => {
         value={todo}
         onChange={(e: any) => setTodo(e.target.value)}
       />
-      <button className={style["add-button"]} onClick={handleAddTodo}>
+      <button className={style["add-button"]} type="submit">
         <span className={style["button-text"]}>Add</span>
         <img className={style["button-img"]} src={Plus} alt="" />
       </button>
-    </div>
+    </form>
   );
 };
 
