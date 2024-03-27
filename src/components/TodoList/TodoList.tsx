@@ -6,19 +6,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import { setTodoList } from "../../store/slice/todoSlice";
 import { useEffect } from "react";
-import axios from "axios";
+import { fetchTodos } from "../../apis";
 
 type Props = {};
 
 const TodoList = (props: Props) => {
   useEffect(() => {
-    fetchTodos();
+    fetchTodosData();
   });
 
-  const fetchTodos = async () => {
-    const response = await axios.get(process.env.REACT_APP_API_URL as string);
-    console.log("response.data.data ==> ", response.data.data);
-    dispatch(setTodoList(response.data.data));
+  const fetchTodosData = async () => {
+    const response = await fetchTodos();
+    dispatch(setTodoList(response));
   };
 
   const { todoList } = useSelector((state: RootState) => {
