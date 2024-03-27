@@ -5,10 +5,22 @@ import TodoListItems from "../TodoListItems/TodoListItems";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import { setTodoList } from "../../store/slice/todoSlice";
+import { useEffect } from "react";
+import axios from "axios";
 
 type Props = {};
 
 const TodoList = (props: Props) => {
+  useEffect(() => {
+    fetchTodos();
+  });
+
+  const fetchTodos = async () => {
+    const response = await axios.get(process.env.REACT_APP_API_URL as string);
+    console.log("response.data.data ==> ", response.data.data);
+    dispatch(setTodoList(response.data.data));
+  };
+
   const { todoList } = useSelector((state: RootState) => {
     return state.todos;
   });
@@ -74,7 +86,7 @@ const TodoList = (props: Props) => {
               todoList.map((todo: ITodoList) => (
                 <TodoListItems
                   key={todo.id}
-                  name={todo.name}
+                  name={todo.task}
                   isCompleted={todo.isCompleted}
                   id={todo.id}
                   changeValue={handleSelect}

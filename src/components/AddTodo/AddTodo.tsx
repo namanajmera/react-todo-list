@@ -15,7 +15,7 @@ const AddTodo = (props: Props) => {
     e.preventDefault();
     const newTodo: ITodoList = {
       id: Math.random(),
-      name: todo,
+      task: todo,
       isCompleted: false,
     };
     dispatch(addNewTodo(newTodo));
