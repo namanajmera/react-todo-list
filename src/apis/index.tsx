@@ -21,4 +21,11 @@ const isCompleteTodo = async (id: number) => {
   return response.data;
 };
 
-export { fetchTodos, addTodo, isCompleteTodo };
+const deleteTodo = async (id: number) => {
+  const response = await axios.delete(
+    `${process.env.REACT_APP_API_URL}todo/${id}` as string
+  );
+  return response.data;
+};
+
+export { fetchTodos, addTodo, isCompleteTodo, deleteTodo };

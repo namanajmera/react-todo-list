@@ -6,14 +6,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import { setTodoList } from "../../store/slice/todoSlice";
 import { useEffect } from "react";
-import { fetchTodos, isCompleteTodo } from "../../apis";
+import { deleteTodo, fetchTodos, isCompleteTodo } from "../../apis";
 
 type Props = {};
 
 const TodoList = (props: Props) => {
   useEffect(() => {
     fetchTodosData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchTodosData = async () => {
@@ -37,15 +37,16 @@ const TodoList = (props: Props) => {
 
   const handleSelect = async (id: number) => {
     const response = await isCompleteTodo(id);
-    if(response.status === "success"){
+    if (response.status === "success") {
       fetchTodosData();
     }
   };
 
-  const handleDeleteTodo = (id: number) => {
-    const updatedTodo =
-      todoList && todoList.filter((todo: ITodoList) => todo.id !== id);
-    dispatch(setTodoList(updatedTodo));
+  const handleDeleteTodo = async (id: number) => {
+    const response = await deleteTodo(id);
+    if (response.status === "success") {
+      fetchTodosData();
+    }
   };
 
   return (
