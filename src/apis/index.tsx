@@ -14,4 +14,11 @@ const addTodo = async (todo: ITodoList) => {
   return response.data;
 };
 
-export { fetchTodos, addTodo };
+const isCompleteTodo = async (id: number) => {
+  const response = await axios.put(
+    `${process.env.REACT_APP_API_URL}todo/${id}` as string
+  );
+  return response.data;
+};
+
+export { fetchTodos, addTodo, isCompleteTodo };

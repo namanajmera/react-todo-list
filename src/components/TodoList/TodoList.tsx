@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/rootReducer";
 import { setTodoList } from "../../store/slice/todoSlice";
 import { useEffect } from "react";
-import { fetchTodos } from "../../apis";
+import { fetchTodos, isCompleteTodo } from "../../apis";
 
 type Props = {};
 
@@ -35,13 +35,11 @@ const TodoList = (props: Props) => {
     return checkCompleted?.length;
   };
 
-  const handleSelect = (id: number) => {
-    const updatedTodo = todoList?.map((todo: ITodoList) =>
-      id === todo?.id
-        ? { ...todo, isComplete: !todo.isComplete }
-        : { ...todo }
-    );
-    dispatch(setTodoList(updatedTodo));
+  const handleSelect = async (id: number) => {
+    const response = await isCompleteTodo(id);
+    if(response.status === "success"){
+      fetchTodosData();
+    }
   };
 
   const handleDeleteTodo = (id: number) => {
