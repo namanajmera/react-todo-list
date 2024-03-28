@@ -1,7 +1,7 @@
 export interface ITodoList {
-  id: number;
+  id?: number;
   task: string;
-  isCompleted: boolean;
+  isComplete?: boolean;
 }
 
 interface TodoState {

@@ -2,8 +2,9 @@ import style from "./AddTodo.module.less";
 import { Plus } from "../../assets/images";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNewTodo } from "../../store/slice/todoSlice";
+import { setTodoList } from "../../store/slice/todoSlice";
 import { ITodoList } from "../../Model/modal";
+import { addTodo, fetchTodos } from "../../apis";
 
 type Props = {};
 
@@ -11,14 +12,16 @@ const AddTodo = (props: Props) => {
   const dispatch = useDispatch();
   const [todo, setTodo] = useState("");
 
-  const handleAddTodo = (e: React.FormEvent) => {
+  const handleAddTodo = async (e: React.FormEvent) => {
     e.preventDefault();
     const newTodo: ITodoList = {
-      id: Math.random(),
       task: todo,
-      isCompleted: false,
     };
-    dispatch(addNewTodo(newTodo));
+    const resp = await addTodo(newTodo);
+    if (resp) {
+      const response = await fetchTodos();
+      dispatch(setTodoList(response));
+    }
     setTodo("");
   };
   return (

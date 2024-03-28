@@ -13,7 +13,8 @@ type Props = {};
 const TodoList = (props: Props) => {
   useEffect(() => {
     fetchTodosData();
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const fetchTodosData = async () => {
     const response = await fetchTodos();
@@ -29,7 +30,7 @@ const TodoList = (props: Props) => {
     const checkCompleted =
       todoList &&
       todoList.filter((todo: ITodoList, index) => {
-        return todo?.isCompleted === true;
+        return todo?.isComplete === true;
       });
     return checkCompleted?.length;
   };
@@ -37,7 +38,7 @@ const TodoList = (props: Props) => {
   const handleSelect = (id: number) => {
     const updatedTodo = todoList?.map((todo: ITodoList) =>
       id === todo?.id
-        ? { ...todo, isCompleted: !todo.isCompleted }
+        ? { ...todo, isComplete: !todo.isComplete }
         : { ...todo }
     );
     dispatch(setTodoList(updatedTodo));
@@ -86,8 +87,8 @@ const TodoList = (props: Props) => {
                 <TodoListItems
                   key={todo.id}
                   name={todo.task}
-                  isCompleted={todo.isCompleted}
-                  id={todo.id}
+                  isCompleted={todo?.isComplete}
+                  id={todo?.id}
                   changeValue={handleSelect}
                   handleDeleteTodo={handleDeleteTodo}
                 />

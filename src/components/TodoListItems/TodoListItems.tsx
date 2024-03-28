@@ -3,9 +3,9 @@ import style from "./TodoListItems.module.less";
 import { Trash } from '../../assets/images';
 
 type Props = {
-    id: number
+    id?: number
     name: String,
-    isCompleted: boolean
+    isCompleted?: boolean
     changeValue: any
     handleDeleteTodo: any
 }
